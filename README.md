@@ -123,14 +123,6 @@ osascript -e 'display notification "测试内容" with title "测试标题"'
 
 iPhone 收到推送 + Mac 弹出通知 = 配置成功 ✅
 
-## Apple Watch 配对
-
-如果你的 Apple Watch 之前配对了旧手机，需要先重置：
-
-1. 在 Apple Watch 上：**设置 → 通用 → 还原 → 抹掉所有内容和设置**
-2. Watch 重启后，在当前 iPhone 打开 **Watch App** → 开始配对
-3. 配对完成后，Bark 推送会自动转发到 Watch 并震动，无需额外配置
-
 ## 注意事项
 
 | 要点 | 说明 |

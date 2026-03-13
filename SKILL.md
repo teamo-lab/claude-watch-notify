@@ -48,17 +48,7 @@ tools: Read, Edit, Write, Bash
    ```
 3. 复制 URL 中的 **KEY**（`YOUR_KEY` 部分），后续配置要用
 
-### Step 2: 配对 Apple Watch（可选）
-
-如果你希望通知震动 Apple Watch：
-
-1. 确保 Apple Watch 与 **当前 iPhone** 配对
-2. 如果 Watch 之前配对了旧手机，需要先在 Watch 上重置：
-   - Watch 上操作：**设置 → 通用 → 还原 → 抹掉所有内容和设置**
-   - 重启后在当前 iPhone 的 **Watch App** 中重新配对
-3. Bark 的推送会自动转发到 Apple Watch 并触发震动，无需额外配置
-
-### Step 3: 安装 Mac 依赖
+### Step 2: 安装 Mac 依赖
 
 ```bash
 # jq 用于 JSON 解析（可选，未来扩展用）

@@ -36,9 +36,11 @@ fi
 ) &>/dev/null &
 disown
 
-# Bark push to phone
-/usr/bin/curl -s "${BARK_URL}/${TITLE}/${BODY}" > /dev/null &>/dev/null &
-disown
+# Bark push to phone (use POST to handle spaces/emoji in title/body)
+/usr/bin/curl -s --max-time 5 -X POST "${BARK_URL}" \
+  -d "title=${TITLE}" \
+  -d "body=${BODY}" \
+  > /dev/null 2>&1
 
 # Exit immediately, don't wait
 exit 0

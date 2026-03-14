@@ -12,6 +12,16 @@ FOCUS_SCRIPT="$HOOK_DIR/focus_terminal.sh"
 # Per-session key: TERM_SESSION_ID is unique per Terminal tab
 SESSION_KEY="${TERM_SESSION_ID:-default}"
 
+# Skip notifications from subagents/background processes (no TERM_SESSION_ID)
+if [ "$SESSION_KEY" = "default" ]; then
+  exit 0
+fi
+
+# Skip if no session name file (session_start.sh was never run for this tab)
+if [ ! -f "/tmp/claude_session_name_${SESSION_KEY}" ]; then
+  exit 0
+fi
+
 NAME=$(cat "/tmp/claude_session_name_${SESSION_KEY}" 2>/dev/null || echo "小瑶酱")
 WINDOW_ID=$(cat "/tmp/claude_window_${SESSION_KEY}" 2>/dev/null)
 EVENT_TYPE="$1"
@@ -36,7 +46,7 @@ fi
 ) &>/dev/null &
 disown
 
-# Bark push to phone (use POST to handle spaces/emoji in title/body)
+# Bark push to phone (use --data-urlencode to handle spaces/emoji in title/body)
 /usr/bin/curl -s --max-time 5 -X POST "${BARK_URL}" \
   -d "title=${TITLE}" \
   -d "body=${BODY}" \
